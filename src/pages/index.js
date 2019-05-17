@@ -1,7 +1,7 @@
 import React from "react"
 import { graphql } from "gatsby"
 import Img from "gatsby-image"
-
+import styled from "styled-components"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 
@@ -9,6 +9,32 @@ import "@fortawesome/fontawesome-free/css/all.min.css"
 
 import configs from "../../site-config"
 
+const Button = styled.a`
+  background-color: #f30247;
+  color: white;
+  padding: 10px 25px;
+  border-radius: 100px;
+  font-size: 12px;
+  font-weight: 600;
+  margin: 0 5px;
+  :hover {
+    color: #f30247;
+    background-color: #fff;
+  }
+`
+const ButtonWhite = styled.a`
+  background-color: #fff;
+  color: #f30247;
+  padding: 10px 25px;
+  border-radius: 100px;
+  font-size: 12px;
+  font-weight: 600;
+  margin: 0 5px;
+  :hover {
+    color: #fff;
+    background-color: #f30247;
+  }
+`
 const IndexPage = ({ data }) => (
   <Layout>
     <SEO title="Home" keywords={configs.app_keywords} />
@@ -16,9 +42,8 @@ const IndexPage = ({ data }) => (
     <div
       className="imageWrapper"
       style={{
-        backgroundImage: `linear-gradient(${configs.cover_overlay_color_rgba},${
-          configs.cover_overlay_color_rgba
-        }),url(${data.headerImage.childImageSharp.fluid.src})`,
+        backgroundImage: `linear-gradient(#f30247,#f30247
+        ),url(${data.headerImage.childImageSharp.fluid.src})`,
       }}
     >
       <div className="headerBackground">
@@ -45,13 +70,8 @@ const IndexPage = ({ data }) => (
               <p className="headerName">{configs.app_name}</p>
             </div>
             <nav>
-              <ul>
-                {configs.presskit_download_link && (
-                  <li>
-                    <a href={configs.presskit_download_link}>Press Kit</a>
-                  </li>
-                )}
-              </ul>
+              <ButtonWhite href="#features-info">How it works</ButtonWhite>
+              <Button href="#coming-soon">Coming Soon</Button>
             </nav>
           </header>
           <div
@@ -88,11 +108,7 @@ const IndexPage = ({ data }) => (
             </svg>
             {configs.video_or_screenshot === "video" && (
               <div className="videoContainer">
-                <video
-                  className="screenvideo"
-                  autoPlay="autoplay"
-                  controls="controls"
-                >
+                <video className="screenvideo" autoPlay="autoplay" loop="loop">
                   <source
                     src={data.videoScreen.publicURL}
                     type={`video/${
@@ -138,31 +154,13 @@ const IndexPage = ({ data }) => (
             <div className="appDescriptionContainer">
               <p className="appDescription">{configs.app_description}</p>
             </div>
-            <div className="downloadButtonsContainer">
-              {configs.playstore_link && (
-                <a className="playStoreLink" href={configs.playstore_link}>
-                  <Img
-                    fixed={data.playStore.childImageSharp.fixed}
-                    className="playStore"
-                  />
-                </a>
-              )}
-              {configs.appstore_link && (
-                <a className="appStoreLink" href={configs.appstore_link}>
-                  <Img
-                    fixed={data.appStore.childImageSharp.fixed}
-                    className="appStore"
-                  />
-                </a>
-              )}
-            </div>
           </div>
-          <div className="features">
+          <div className="features" id="features-info">
             {configs.features.map(feature => {
               if (feature.title) {
                 return (
                   <div className="feature">
-                    <div>
+                    <div className="featureIcon">
                       <span className="fa-stack fa-1x">
                         <i className="iconBack fas fa-circle fa-stack-2x" />
                         <i
@@ -172,9 +170,19 @@ const IndexPage = ({ data }) => (
                         />
                       </span>
                     </div>
+
                     <div className="featureText">
                       <h3>{feature.title}</h3>
                       <p>{feature.description}</p>
+
+                      <h3 className="feature2">{feature.title2}</h3>
+                      <p>{feature.description2}</p>
+                    </div>
+                    <div className="featureImage">
+                      <Img
+                        fluid={data.iphoneScreen.childImageSharp.fluid}
+                        className="iphoneScreen"
+                      />
                     </div>
                   </div>
                 )
@@ -182,64 +190,21 @@ const IndexPage = ({ data }) => (
               return null
             })}
           </div>
-          <footer>
-            <p className="footerText">
-              Made by{" "}
-              {configs.your_link ? (
-                <a href={configs.your_link}>{configs.your_name}</a>
-              ) : (
-                `${configs.your_name}`
-              )}
-              {configs.your_city && ` in ${configs.your_city}`}
-            </p>
-            <div className="footerIcons">
-              {configs.facebook_username && (
-                <a
-                  href={`https://facebook.com/${configs.facebook_username}`}
-                  aria-label="Facebook"
-                >
-                  <span className="fa-stack fa-1x">
-                    <i className="socialIconBack fas fa-circle fa-stack-2x" />
-                    <i className="socialIconTop fab fa-facebook fa-stack-1x" />
-                  </span>
-                </a>
-              )}
 
-              {configs.twitter_username && (
-                <a
-                  href={`https://twitter.com/${configs.twitter_username}`}
-                  aria-label="Twitter"
-                >
-                  <span className="fa-stack fa-1x">
-                    <i className="socialIconBack fas fa-circle fa-stack-2x" />
-                    <i className="socialIconTop fab fa-twitter fa-stack-1x" />
-                  </span>
-                </a>
-              )}
-
-              {configs.github_username && (
-                <a
-                  href={`https://github.com/${configs.github_username}`}
-                  aria-label="GitHub"
-                >
-                  <span className="fa-stack fa-1x">
-                    <i className="socialIconBack fas fa-circle fa-stack-2x" />
-                    <i className="socialIconTop fab fa-github fa-stack-1x" />
-                  </span>
-                </a>
-              )}
-
-              {configs.email_address && (
-                <a href={`mailto:${configs.email_address}`} aria-label="Email">
-                  <span className="fa-stack fa-1x">
-                    <i className="socialIconBack fas fa-circle fa-stack-2x" />
-                    <i className="socialIconTop fas fa-envelope fa-stack-1x" />
-                  </span>
-                </a>
-              )}
-            </div>
-          </footer>
-          {/*TODO: Add App Store API */}
+          <div className="downloadButtonsContainer" id="coming-soon">
+            {configs.playstore_link && (
+              <Img
+                fixed={data.playStore.childImageSharp.fixed}
+                className="playStore"
+              />
+            )}
+            {configs.appstore_link && (
+              <Img
+                fixed={data.appStore.childImageSharp.fixed}
+                className="appStore"
+              />
+            )}
+          </div>
         </div>
       </div>
     </div>
@@ -285,7 +250,7 @@ export const query = graphql`
       publicURL
       extension
     }
-    appIconLarge: file(relativePath: { eq: "icon.png" }) {
+    appIconLarge: file(relativePath: { eq: "largeIcon.png" }) {
       childImageSharp {
         fluid(maxWidth: 120) {
           ...GatsbyImageSharpFluid

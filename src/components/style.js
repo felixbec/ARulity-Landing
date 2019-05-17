@@ -58,7 +58,6 @@ export default createGlobalStyle`
     background-repeat: no-repeat;
     background-size: cover;
     background-position: top;
-    border-radius: 0px 0px 40px 40px;
   }
 
   .headerImage {
@@ -94,7 +93,8 @@ export default createGlobalStyle`
       "h h h h h h h h h h h h"
       "p p p p p i i i i i i i"
       "c c c c c c c c c c c c"
-      "f f f f f f f f f f f f";
+      "f f f f f f f f f f f f"
+      "d d d d d d d d d d d d";
   }
 
   @media only screen and (max-width: 1070px) {
@@ -114,7 +114,9 @@ export default createGlobalStyle`
         "i i i i i i i i i i i i"
         "p p p p p p p p p p p p"
         "c c c c c c c c c c c c"
-        "f f f f f f f f f f f f";
+        "f f f f f f f f f f f f"
+        "d d d d d d d d d d d d";
+
     }
   }
 
@@ -270,9 +272,14 @@ export default createGlobalStyle`
   }
 
   .downloadButtonsContainer {
-    display: inline-block;
-    margin-top: 42px;
+    grid-area: d;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    padding: 200px 0;
     filter: drop-shadow(0px 5px 10px rgba(#000, 0.1)) drop-shadow(0px 1px 1px rgba(#000, 0.2));
+    
   }
 
   @media only screen and (max-width: 992px) {
@@ -409,7 +416,7 @@ export default createGlobalStyle`
     padding-top: 63px;
     padding-left: 15px;
     padding-right: 15px;
-    width: calc(100% / 3);
+    width: calc(100% / 1);
   }
 
   .feature:nth-child(-n + 3) {
@@ -425,11 +432,11 @@ export default createGlobalStyle`
   }
 
   .iconBack {
-    color: ${configs.feature_icons_background_color};
+    color: #f30247;
   }
 
   .iconTop {
-    color: ${configs.feature_icons_foreground_color};
+    color: #fff;
   }
 
   .socialIconBack {
@@ -441,7 +448,13 @@ export default createGlobalStyle`
   }
 
   .featureText {
-    margin-left: 18px;
+    margin: auto 18px;
+  }
+  .featureIcon{
+    margin: auto;
+  }
+  .feature2{
+    margin-top: 50px;
   }
 
   .featureText > h3 {
@@ -454,6 +467,11 @@ export default createGlobalStyle`
     line-height: 1.5;
   }
 
+  @media only screen and (max-width: 600px){
+    .featureImage{
+      display:none;
+    }
+  }
   @media only screen and (max-width: 992px) {
     .features {
       flex-grow: 1;
