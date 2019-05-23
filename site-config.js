@@ -60,4 +60,5 @@ module.exports = {
   social_icons_foreground_color: "#666666",
   social_icons_background_color: "#e6e6e6",
   footer_text_color: "#666666",
+  theme: "light", //light or dark
 }

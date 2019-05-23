@@ -11,6 +11,7 @@ export default createGlobalStyle`
   body {
     font-size: 2rem;
     background-color: ${configs.body_background_color};
+    
   }
 
   h1 {
@@ -76,6 +77,7 @@ export default createGlobalStyle`
 
   .headerBackground {
     height: 115px;
+    background-color: ${configs.theme_color};
     background-color: ${configs.header_background};
   }
 
