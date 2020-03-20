@@ -27,7 +27,7 @@ class Footer2 extends Component {
     return (
       <ThemeProvider theme={{ background: "red", foreground: "white" }}>
         <FooterUser>
-          <p> &copy; 2019 UA-Designs</p>
+          <p> &copy;2020 ARulity</p>
         </FooterUser>
       </ThemeProvider>
     )
